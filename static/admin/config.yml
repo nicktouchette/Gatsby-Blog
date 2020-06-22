@@ -3,7 +3,9 @@ backend:
   repo: nicktouchette/Gatsby-Blog   # Path to your GitHub repository
   branch: master    # Branch for Netlify CMS to create Pull Requests against
   base_url: https://us-east1-nicktouchette-api.cloudfunctions.net   # Base URL extracted from the Cloud Function Endpoint URL
-  auth: NetlifyCMSAuth/auth
+  auth_endpoint: NetlifyCMSAuth/auth
+
+local_backend: true
 
 media_folder: static/img
 public_folder: /img
