@@ -5,13 +5,15 @@ WORKDIR /cache/
 COPY package*.json ./
 RUN yarn install
 COPY . .
+RUN ls
 
 #Stage 2 - Build this thing
 FROM mhart/alpine-node as build_output
 WORKDIR /build/
 COPY --from=node_cache /cache/ .
-CMD [ "yarn", "build" ]
+RUN yarn build
 COPY . .
+RUN ls
 
 #Stage 3 - Copy this thing
 FROM gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
