@@ -6,4 +6,4 @@ steps:
   entrypoint: yarn
   args: ['run', 'build']
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['-m', 'cp', '-r', 'static*', 'gs://www.nicktouchette.com/gatsby']
+  args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://www.nicktouchette.com/gatsby/']
