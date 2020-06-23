@@ -1,6 +1,6 @@
 FROM alpine
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN yarn install
+RUN npm install
 COPY . .
-CMD [ "yarn", "build" ]
+CMD [ "npm", "build" ]
