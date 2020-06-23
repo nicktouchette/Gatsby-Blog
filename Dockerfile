@@ -15,4 +15,4 @@ CMD [ "yarn", "build" ]
 FROM gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
 WORKDIR /build/
 COPY --from=application /usr/src/app .
-RUN gsutil -m rsync -r -c -d public/ gs://www.nicktouchette.com/gatsby/
+RUN gsutil -m rsync -r -c -d /build/public/ gs://www.nicktouchette.com/gatsby/
