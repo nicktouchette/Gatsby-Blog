@@ -6,13 +6,13 @@ COPY package*.json ./
 RUN yarn install
 
 #Stage 2 - Build this thing
-FROM mhart/alpine-node as application
-WORKDIR /usr/src/app
+FROM mhart/alpine-node as build_output
+WORKDIR /build/
 COPY --from=node_cache /cache/ .
 CMD [ "yarn", "build" ]
 
 #Stage 3 - Copy this thing
 FROM gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
-WORKDIR /build/
-COPY --from=application /usr/src/app .
-RUN gsutil -m rsync -r -c -d /build/public/ gs://www.nicktouchette.com/gatsby/
+WORKDIR /root/
+COPY --from=build_output /build/ .
+RUN gsutil -m rsync -r -c -d public/ gs://www.nicktouchette.com/gatsby/
