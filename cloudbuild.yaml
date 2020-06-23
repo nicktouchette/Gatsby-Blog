@@ -1,4 +1,9 @@
 steps:
+- name: 'gcr.io/kaniko-project/executor:latest'
+  args:
+  - --destination=gcr.io/$PROJECT_ID/image
+  - --cache=true
+  - --cache-ttl=6h
 - name: node
   entrypoint: yarn
   args: ['install']
@@ -6,4 +11,4 @@ steps:
   entrypoint: yarn
   args: ['run', 'build']
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://www.nicktouchette.com/gatsby/']
+  args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://www.nicktouchette.com/gatsby/', '--delete']
