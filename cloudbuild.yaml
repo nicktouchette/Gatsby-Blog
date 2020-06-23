@@ -4,5 +4,3 @@ steps:
   - --destination=gcr.io/$PROJECT_ID/image
   - --cache=true
   - --cache-ttl=6h
-- name: 'gcr.io/cloud-builders/gsutil'
-  args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://www.nicktouchette.com/gatsby/', '--delete']
