@@ -9,6 +9,7 @@ RUN yarn install
 FROM mhart/alpine-node as build_output
 WORKDIR /build/
 COPY --from=node_cache /cache/ .
+COPY . .
 CMD [ "yarn", "build" ]
 
 #Stage 3 - Copy this thing
