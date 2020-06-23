@@ -5,3 +5,5 @@ steps:
 - name: node
   entrypoint: yarn
   args: ['run', 'build']
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['-m', 'cp', '-r', 'static*', 'gs://www.nicktouchette.com/gatsby']
