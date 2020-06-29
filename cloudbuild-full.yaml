@@ -1,14 +1,16 @@
 steps:
   - name: node
+    id: installdeps
     entrypoint: yarn
     args: ['install']
   - name: 'gcr.io/$PROJECT_ID/save_cache'
     args:
     - '--bucket=gs://nicktouchette-project-cache'
-    - '--key=gradle-$( checksum build.gradle )'
+    - '--key=gradle-$( checksum package.json )'
     - '--path=.gradle/wrapper'
     - '--path=.gradle/caches'
   - name: node
+    id: build
     entrypoint: yarn
     args: ['run', 'build']
   - name: 'gcr.io/cloud-builders/gsutil'

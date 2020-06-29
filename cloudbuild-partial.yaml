@@ -6,6 +6,7 @@ steps:
     - '--bucket=gs://nicktouchette-project-cache/'
     - '--key=gradle-$( checksum build.gradle )'
   - name: node
+    id: build
     entrypoint: yarn
     args: ['run', 'build']
   - name: 'gcr.io/cloud-builders/gsutil'
