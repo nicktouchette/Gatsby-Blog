@@ -6,9 +6,8 @@ steps:
   - name: 'gcr.io/$PROJECT_ID/save_cache'
     args:
     - '--bucket=gs://nicktouchette-project-cache'
-    - '--key=gradle-$( checksum package.json )'
-    - '--path=.gradle/wrapper'
-    - '--path=.gradle/caches'
+    - '--key=package-$( checksum package.json )'
+    - '--path=node_modules'
   - name: node
     id: build
     entrypoint: yarn

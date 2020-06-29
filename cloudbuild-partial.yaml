@@ -4,7 +4,7 @@ steps:
     waitFor: ['-']
     args:
     - '--bucket=gs://nicktouchette-project-cache/'
-    - '--key=gradle-$( checksum build.gradle )'
+    - '--key=package-$( checksum package.json )'
   - name: node
     id: build
     entrypoint: yarn
