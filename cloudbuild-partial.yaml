@@ -6,11 +6,15 @@ steps:
     - '--bucket=gs://nicktouchette-project-cache/'
     - '--key=package-$( checksum package.json )'
   - name: node
+    id: build
     entrypoint: yarn
-    args: ['list']
+    args: ['${_GATSBY}', 'build', '--prefix-paths']
   # - name: node
   #   id: build
   #   entrypoint: yarn
   #   args: ['run', 'build']
-  # - name: 'gcr.io/cloud-builders/gsutil'
-  #   args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://gatsby-blog-example']
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://gatsby-blog-example']
+
+substitutions:
+  _GATSBY: node_modules/gatsby/dist/bin/gatsby
