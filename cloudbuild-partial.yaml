@@ -8,13 +8,14 @@ steps:
   - name: node
     id: build
     entrypoint: yarn
-    args: ['${_GATSBY}', 'build', '--prefix-paths']
+    args: ['bin']
+    # args: ['${_GATSBY}', 'build', '--prefix-paths']
   # - name: node
   #   id: build
   #   entrypoint: yarn
   #   args: ['run', 'build']
-  - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://gatsby-blog-example']
+  # - name: 'gcr.io/cloud-builders/gsutil'
+  #   args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://gatsby-blog-example']
 
 substitutions:
   _GATSBY: node_modules/gatsby/dist/bin/gatsby
