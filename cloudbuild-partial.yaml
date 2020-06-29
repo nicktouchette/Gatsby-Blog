@@ -1,7 +1,6 @@
 steps:
   - name: 'gcr.io/$PROJECT_ID/restore_cache'
     id: restore_cache
-    waitFor: ['-']
     args:
     - '--bucket=gs://nicktouchette-project-cache/'
     - '--key=package-$( checksum package.json )'

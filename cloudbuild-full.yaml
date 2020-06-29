@@ -7,7 +7,6 @@ steps:
     args:
     - '--bucket=gs://nicktouchette-project-cache'
     - '--key=package-$( checksum package.json )'
-    - '--path=/workspace/node_modules'
   - name: node
     id: build
     entrypoint: yarn
