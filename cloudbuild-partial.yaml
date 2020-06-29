@@ -2,7 +2,7 @@ steps:
   - name: 'gcr.io/$PROJECT_ID/restore_cache'
     id: restore_cache
     args:
-    - '--bucket=gs://nicktouchette-project-cache/'
+    - '--bucket=gs://nicktouchette-project-cache'
     - '--key=package-$( checksum package.json )'
   - name: 'ubuntu'
     args: ['ls']
