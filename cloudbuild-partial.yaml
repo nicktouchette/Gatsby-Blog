@@ -7,7 +7,7 @@ steps:
     - '--key=package-$( checksum package.json )'
   - name: node
     entrypoint: yarn
-    args: ['ls']
+    args: ['list']
   # - name: node
   #   id: build
   #   entrypoint: yarn
