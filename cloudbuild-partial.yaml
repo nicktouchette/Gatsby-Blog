@@ -4,9 +4,11 @@ steps:
     args:
     - '--bucket=gs://nicktouchette-project-cache/'
     - '--key=package-$( checksum package.json )'
-  - name: node
-    id: build
-    entrypoint: yarn
-    args: ['run', 'build']
-  - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://gatsby-blog-example']
+  - name: 'ubuntu'
+    args: ['ls']
+  # - name: node
+  #   id: build
+  #   entrypoint: yarn
+  #   args: ['run', 'build']
+  # - name: 'gcr.io/cloud-builders/gsutil'
+  #   args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://gatsby-blog-example']
