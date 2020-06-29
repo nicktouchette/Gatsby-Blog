@@ -1,9 +1,15 @@
 steps:
-- name: node
-  entrypoint: yarn
-  args: ['install']
-- name: node
-  entrypoint: yarn
-  args: ['run', 'build']
-- name: 'gcr.io/cloud-builders/gsutil'
-  args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://gatsby-blog-example']
+  - name: node
+    entrypoint: yarn
+    args: ['install']
+  - name: 'gcr.io/$PROJECT_ID/save_cache'
+    args:
+    - '--bucket=gs://nicktouchette-project-cache'
+    - '--key=gradle-$( checksum build.gradle )'
+    - '--path=.gradle/wrapper'
+    - '--path=.gradle/caches'
+  - name: node
+    entrypoint: yarn
+    args: ['run', 'build']
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['-m', 'rsync', '-r', '-c', '-d', 'public/', 'gs://gatsby-blog-example']

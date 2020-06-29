@@ -1,4 +1,10 @@
 steps:
+  - name: 'gcr.io/$PROJECT_ID/restore_cache'
+    id: restore_cache
+    waitFor: ['-']
+    args:
+    - '--bucket=gs://nicktouchette-project-cache/'
+    - '--key=gradle-$( checksum build.gradle )'
   - name: node
     entrypoint: yarn
     args: ['run', 'build']
